@@ -1,6 +1,5 @@
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -13,9 +12,6 @@ public class Dictionary {
 
     public static final String DICTIONARY_FILE = "ressources/data/dict.csv";
     public Word[] dictionary;
-
-    public static String wordAndDefinition;
-
 
     private int numberOfLetters;
 
@@ -72,7 +68,6 @@ public class Dictionary {
             System.out.println("Csv has an issue");
         }
 
-
         return words;
     }
 
@@ -85,7 +80,4 @@ public class Dictionary {
         this.numberOfLetters = numberOfLetters;
     }
 
-    public Word[] getDictionary() {
-        return dictionary;
-    }
 }
