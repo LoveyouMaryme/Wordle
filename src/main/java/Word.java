@@ -12,17 +12,11 @@ public class Word {
         return word;
     }
 
-    public void setWord(String word) {
-        this.word = word;
-    }
-
     public String getDefiniton() {
         return definiton;
     }
 
-    public void setDefiniton(String definiton) {
-        this.definiton = definiton;
-    }
+
 
 
 }
