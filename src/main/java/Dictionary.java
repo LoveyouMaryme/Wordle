@@ -44,26 +44,21 @@ public class Dictionary {
                     .build();
 
 
-            while (csvReader.readNext() != null){
+            while (csvReader.readNext() != null) {
 
                 currentWord = Arrays.toString(csvReader.readNext());
 
-                    word = currentWord.substring(0, currentWord.indexOf(",")).replaceAll("\\[", "");
-                    definition = currentWord.substring(currentWord.indexOf(",") + 2).replaceAll("]", "");
-                    ;
+                word = currentWord.substring(0, currentWord.indexOf(",")).replaceAll("\\[", "");
+                definition = currentWord.substring(currentWord.indexOf(",") + 2).replaceAll("]", "");
+                ;
 
-                    Word newWord = new Word(word, definition);
+                Word newWord = new Word(word, definition);
 
-                    if (word.length() == this.numberOfLetters) {
-                        words.add(newWord);
+                if (word.length() == this.numberOfLetters) {
+                    words.add(newWord);
 
-                    }
-
-
+                }
             }
-
-
-
             csvReader.close();
 
 
