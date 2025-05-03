@@ -8,6 +8,21 @@ public class GuessManager {
         this.playerGuessesBank = new PlayerGuess[numberOfGuesses];
     }
 
+    public boolean addGuess (PlayerGuess guess ){
+        boolean isGuessadded = false;
+
+        for(int i = 0; i < playerGuessesBank.length && !isGuessadded; i++){
+
+            if(playerGuessesBank[i] == null){
+                playerGuessesBank[i] = guess;
+                isGuessadded = true;
+
+            }
+        }
+
+        return isGuessadded;
+    }
+
     public PlayerGuess[] getPlayerGuessesBank() {
         return playerGuessesBank;
     }
