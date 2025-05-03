@@ -44,6 +44,7 @@ public class Main {
         //If number of letters = 0, stop the game
 
 
+
         // one day write how many guesses she could have with that choice
         //System.out.println("There are")
 
