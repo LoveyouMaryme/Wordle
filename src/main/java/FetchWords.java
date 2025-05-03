@@ -8,25 +8,25 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Dictionary {
+public class FetchWords {
 
     public static final String DICTIONARY_FILE = "ressources/data/dict.csv";
-    public Word[] dictionary;
+    public DictionaryEntry[] dictionary;
 
     private int numberOfLetters;
 
-    public Dictionary(int numberOfLetters) {
+    public FetchWords(int numberOfLetters) {
         this.numberOfLetters = numberOfLetters;
     }
 
 
-    public ArrayList<Word> readDictionary(String filename) {
+    public ArrayList<DictionaryEntry> readDictionary(String filename) {
 
         String currentWord;
         String word;
         String definition;
         CSVReader csvReader;
-        ArrayList<Word> words = new ArrayList<>();
+        ArrayList<DictionaryEntry> words = new ArrayList<>();
 
 
         try {
@@ -48,7 +48,7 @@ public class Dictionary {
                 definition = currentWord.substring(currentWord.indexOf(",") + 2).replaceAll("]", "");
                 ;
 
-                Word newWord = new Word(word, definition);
+                DictionaryEntry newWord = new DictionaryEntry(word, definition);
 
                 if (word.length() == this.numberOfLetters) {
                     words.add(newWord);
@@ -71,13 +71,11 @@ public class Dictionary {
         return words;
     }
 
-
     public int getNumberOfLetters() {
         return numberOfLetters;
     }
 
-    public void setNumberOfLetters(int numberOfLetters) {
-        this.numberOfLetters = numberOfLetters;
+    public DictionaryEntry[] getDictionary() {
+        return dictionary;
     }
-
 }
