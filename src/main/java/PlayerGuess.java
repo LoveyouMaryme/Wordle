@@ -1,9 +1,15 @@
 public class PlayerGuess {
 
     private final char[] guess;
+    private static int numberOfGuesses = 0;
 
     public PlayerGuess(char[] guess) {
         this.guess = guess;
+        numberOfGuesses++;
+    }
+
+    public static int getNumberOfGuesses() {
+        return numberOfGuesses;
     }
 
     public char[] getGuess() {
