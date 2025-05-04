@@ -137,6 +137,8 @@ public class Main {
 
                 playerChoices.addGuess(playerChoice);
 
+                //compareGuessToRandomWord;
+
                 }
 
 

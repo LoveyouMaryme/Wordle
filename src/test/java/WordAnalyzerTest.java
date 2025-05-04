@@ -12,7 +12,7 @@ class WordAnalyzerTest {
         int index = 0;
 
         for (char i : guess) {
-            System.out.println(WordAnalyzer.isLetterInCorrectPosition(i, wordApple, index));
+            System.out.println(WordAnalyzer.isLetterInCorrectPosition(guess, wordApple, index));
             index++;
         }
 

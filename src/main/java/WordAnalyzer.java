@@ -4,11 +4,11 @@ public class WordAnalyzer {
     public WordAnalyzer() {
     }
 
-    public static boolean isLetterInCorrectPosition(char letterGuess, char[] word, int indexWord) {
+    public static boolean isLetterInCorrectPosition(char[] guess, char[] word, int indexWord) {
 
         boolean letterIsGuessed = false;
 
-        if (letterGuess == word[indexWord]) {
+        if (guess[indexWord] == word[indexWord]) {
             letterIsGuessed = true;
         }
         return letterIsGuessed;
