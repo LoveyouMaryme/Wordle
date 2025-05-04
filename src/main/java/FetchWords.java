@@ -19,7 +19,6 @@ public class FetchWords {
         this.numberOfLetters = numberOfLetters;
     }
 
-
     public ArrayList<DictionaryEntry> readDictionary(String filename) {
 
         String currentWord;

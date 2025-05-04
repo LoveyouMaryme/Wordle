@@ -1,3 +1,6 @@
+import com.sun.source.util.Plugin;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -19,7 +22,7 @@ public class Main {
             try {
                 input = readNumberOfLetters.nextLine();
                 numberOfLetters = Integer.parseInt(input);
-                if(numberOfLetters <= 0){
+                if (numberOfLetters <= 0) {
                     goodNumberOfLetters = false;
                     System.out.println("You cannot enter a negative number");
                 }
@@ -28,10 +31,7 @@ public class Main {
                 goodNumberOfLetters = false;
             }
 
-
-
             System.out.println("\nYou chose to guess " + numberOfLetters + " letters.\n");
-
 
         } while (!goodNumberOfLetters);
 
@@ -69,25 +69,83 @@ public class Main {
 
     }
 
+    public static DictionaryEntry randomWord(int numberOfGuesses) {
+        ArrayList<DictionaryEntry> availableWords;
+        int randomNumber;
+        DictionaryEntry randomWord;
+
+        availableWords = new FetchWords(numberOfGuesses).readDictionary(FetchWords.DICTIONARY_FILE);
+        randomNumber = (int) (Math.random() * availableWords.size());
+
+        randomWord = availableWords.get(randomNumber);
+        return randomWord;
+    }
+
+
+    public static PlayerGuess askPlayerGuess(char[] randomWordToGuess) {
+        Scanner readNumberOfLetters = new Scanner(System.in);
+        boolean validGuess;
+        char[] input;
+        int numberOfLetters = 0;
+        PlayerGuess playerOfficialGuess = null;
+
+        do {
+
+
+            System.out.printf("Enter your %d%s guess: ", PlayerGuess.getNumberOfGuesses() + 1, Affichage.formatSuffixes(PlayerGuess.getNumberOfGuesses() + 1 ));
+
+            validGuess = true;
+            input = readNumberOfLetters.nextLine().toCharArray();
+
+
+            if (input.length > randomWordToGuess.length) {
+                validGuess = false;
+                System.out.println("You cannot enter a word with more letters than the guess");
+            } else {
+                playerOfficialGuess = new PlayerGuess(input);
+
+            }
+
+
+        } while (!validGuess);
+
+        return playerOfficialGuess;
+
+    }
+
 
     public static void main(String[] args) {
 
         int numberOfLetters;
         boolean isGameContinuing = true;
+        PlayerGuess playerChoice;
+
 
 
         while (isGameContinuing) {
             numberOfLetters = askNumberOfLetters();
-            //If number of letters = 0, stop the game
+            GuessManager playerChoices = new GuessManager(numberOfLetters);
 
 
-            isGameContinuing = !(askIsGameDone());
-            if(isGameContinuing) {
+            if (isGameContinuing) {
                 // one day write how many guesses she could have with that choice
-                //System.out.println("There are")
+                char[] pickRandomWord = randomWord(numberOfLetters).getWord();
+                System.out.println("Your word has been chosen\n");
+
+                while(PlayerGuess.getNumberOfGuesses() < numberOfLetters){
+                playerChoice = askPlayerGuess(pickRandomWord);
+
+                playerChoices.addGuess(playerChoice);
+
+                }
+
+
+
+
+                isGameContinuing = !(askIsGameDone());
+
+
             }
-
-
 
 
         }
