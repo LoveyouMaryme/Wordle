@@ -20,12 +20,12 @@ class WordAnalyzerTest {
 
     @Test
     void letterIsInWord() {
-        assertTrue(WordAnalyzer.isLetterInWord('c', new DictionaryEntry("chaton", "petit animal cute")));
+        assertTrue(WordAnalyzer.isLetterInWord('c', "chaton".toCharArray()));
     }
 
     @Test
     void letterIsNotInWord() {
-        assertFalse(WordAnalyzer.isLetterInWord('w', new DictionaryEntry("chaton", "petit animal cute")));
+        assertFalse(WordAnalyzer.isLetterInWord('w',"chaton".toCharArray()));
     }
 
 

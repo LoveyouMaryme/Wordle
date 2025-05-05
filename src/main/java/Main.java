@@ -90,9 +90,7 @@ public class Main {
         PlayerGuess playerOfficialGuess = null;
 
         do {
-
-
-            System.out.printf("Enter your %d%s guess: ", PlayerGuess.getNumberOfGuesses() + 1, Affichage.formatSuffixes(PlayerGuess.getNumberOfGuesses() + 1 ));
+            System.out.printf("Enter your %d%s guess: ", PlayerGuess.getNumberOfGuesses() + 1, Affichage.formatSuffixes(PlayerGuess.getNumberOfGuesses() + 1));
 
             validGuess = true;
             input = readNumberOfLetters.nextLine().toCharArray();
@@ -104,7 +102,7 @@ public class Main {
             } else {
                 playerOfficialGuess = new PlayerGuess(input);
 
-            }
+           }
 
 
         } while (!validGuess);
@@ -121,7 +119,6 @@ public class Main {
         PlayerGuess playerChoice;
 
 
-
         while (isGameContinuing) {
             numberOfLetters = askNumberOfLetters();
             GuessManager playerChoices = new GuessManager(numberOfLetters);
@@ -132,16 +129,14 @@ public class Main {
                 char[] pickRandomWord = randomWord(numberOfLetters).getWord();
                 System.out.println("Your word has been chosen\n");
 
-                while(PlayerGuess.getNumberOfGuesses() < numberOfLetters){
-                playerChoice = askPlayerGuess(pickRandomWord);
+                while (PlayerGuess.getNumberOfGuesses() < numberOfLetters) {
+                    playerChoice = askPlayerGuess(pickRandomWord);
 
-                playerChoices.addGuess(playerChoice);
+                    playerChoices.addGuess(playerChoice);
 
-                //compareGuessToRandomWord;
+                    //compareGuessToRandomWord;
 
                 }
-
-
 
 
                 isGameContinuing = !(askIsGameDone());
