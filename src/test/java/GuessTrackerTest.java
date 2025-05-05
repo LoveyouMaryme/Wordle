@@ -43,4 +43,30 @@ class GuessTrackerTest {
         ArrayList<Character> expected = new ArrayList<Character>(Arrays.asList('t'));
         assertEquals(expected, test);
     }
+
+    @Test
+    void checkIfwordFound(){
+
+        DictionaryEntry testEntry = new DictionaryEntry("proud", "sentiment of humans");
+
+        GuessTracker testGuessTracker  = new GuessTracker(testEntry);
+
+        boolean test = testGuessTracker.isTheWordFound(testEntry.getWord(), "proud".toCharArray());
+        boolean expected = true ;
+        assertEquals(expected, test);
+    }
+
+    @Test
+    void wordIsNotFound(){
+
+        DictionaryEntry testEntry = new DictionaryEntry("proud", "sentiment of humans");
+
+        GuessTracker testGuessTracker  = new GuessTracker(testEntry);
+
+        boolean test = testGuessTracker.isTheWordFound(testEntry.getWord(), "prout".toCharArray());
+        boolean expected = false ;
+        assertEquals(expected, test);
+    }
+
+
 }
