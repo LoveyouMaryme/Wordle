@@ -27,8 +27,20 @@ class GuessTrackerTest {
 
         GuessTracker testGuessTracker  = new GuessTracker(testEntry);
 
-        ArrayList<Character> test = testGuessTracker.keepTrackBadGuesses("brave".toCharArray(), testEntry.getWord());
+        ArrayList<Character> test = testGuessTracker.keepTrackBadGuesses(testEntry.getWord(), "brave".toCharArray());
         ArrayList<Character> expected = new ArrayList<Character>(Arrays.asList('b', 'a', 'v', 'e'));
+        assertEquals(expected, test);
+    }
+
+    @Test
+    void repeatedBadGuessesReturn() {
+
+        DictionaryEntry testEntry = new DictionaryEntry("proud", "sentiment of humans");
+
+        GuessTracker testGuessTracker  = new GuessTracker(testEntry);
+
+        ArrayList<Character> test = testGuessTracker.keepTrackBadGuesses(testEntry.getWord(), "prott".toCharArray());
+        ArrayList<Character> expected = new ArrayList<Character>(Arrays.asList('t'));
         assertEquals(expected, test);
     }
 }

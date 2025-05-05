@@ -33,7 +33,10 @@ public class GuessTracker {
 
         for(int i = 0; i < randomWord.length; i++){
             if(!WordAnalyzer.isLetterInWord(randomWord[i], playerGuess)){
-                badGuessesTracker.add(randomWord[i]);
+                if(!badGuessesTracker.contains(playerGuess[i])){
+                    badGuessesTracker.add(playerGuess[i]);
+                }
+
             }
         }
         return badGuessesTracker;

@@ -96,9 +96,9 @@ public class Main {
             input = readNumberOfLetters.nextLine().toCharArray();
 
 
-            if (input.length > randomWordToGuess.length) {
+            if (input.length != randomWordToGuess.length) {
                 validGuess = false;
-                System.out.println("You cannot enter a word with more letters than the guess");
+                System.out.println("You cannot enter a word with more or less letters than the guess");
             } else {
                 playerOfficialGuess = new PlayerGuess(input);
 
@@ -124,17 +124,25 @@ public class Main {
             GuessManager playerChoices = new GuessManager(numberOfLetters);
 
 
+
             if (isGameContinuing) {
                 // one day write how many guesses she could have with that choice
                 char[] pickRandomWord = randomWord(numberOfLetters).getWord();
                 System.out.println("Your word has been chosen\n");
+                GuessTracker playerProgression = new GuessTracker(randomWord(numberOfLetters));
 
                 while (PlayerGuess.getNumberOfGuesses() < numberOfLetters) {
                     playerChoice = askPlayerGuess(pickRandomWord);
 
                     playerChoices.addGuess(playerChoice);
 
-                    //compareGuessToRandomWord;
+                    System.out.println("You found those letters");
+                    System.out.println(playerProgression.keepTrackGoodGuesses(pickRandomWord,playerChoice.getGuess()));
+
+                    System.out.println("The word doesn't have those letters");
+                    System.out.println(playerProgression.keepTrackBadGuesses(pickRandomWord,playerChoice.getGuess()));
+
+
 
                 }
 
