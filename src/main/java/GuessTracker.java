@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GuessTracker {
 
@@ -17,6 +18,7 @@ public class GuessTracker {
     }
 
     public char[] keepTrackGoodGuesses(char[] randomWord, char[] playerGuess) {
+        Arrays.fill(goodGuessesTracker, '_');
 
         for (int i = 0; i < randomWord.length; i++) {
             if (randomWord[i] == playerGuess[i]) {
@@ -29,7 +31,7 @@ public class GuessTracker {
     public ArrayList<Character> keepTrackBadGuesses(char[] randomWord, char[] playerGuess) {
 
         for (int i = 0; i < randomWord.length; i++) {
-            if (!WordAnalyzer.isLetterInWord(randomWord[i], playerGuess)) {
+            if (!WordAnalyzer.isLetterInWord(playerGuess[i], randomWord)) {
                 if (!badGuessesTracker.contains(playerGuess[i])) {
                     badGuessesTracker.add(playerGuess[i]);
                 }
@@ -47,6 +49,10 @@ public class GuessTracker {
                 goodGuessesTracker[i] = playerGuess[i];
                 wordIsFound = false;
             }
+        }
+
+        if(wordIsFound){
+            System.out.println("Congratz!");
         }
 
         return wordIsFound;

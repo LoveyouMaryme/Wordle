@@ -17,8 +17,6 @@ public class GuessManager {
                 playerGuessesBank[i] = guess;
                 isGuessadded = true;
 
-
-
             }
         }
 

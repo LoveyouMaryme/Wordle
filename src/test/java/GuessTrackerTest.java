@@ -68,5 +68,19 @@ class GuessTrackerTest {
         assertEquals(expected, test);
     }
 
+    @Test
+    void guessMultipleWords() {
+
+        DictionaryEntry testEntry = new DictionaryEntry("proud", "sentiment of humans");
+
+        GuessTracker testGuessTracker  = new GuessTracker(testEntry);
+
+        char[] test = testGuessTracker.keepTrackGoodGuesses("brave".toCharArray(), testEntry.getWord());
+        char[] test2 = testGuessTracker.keepTrackGoodGuesses("prave".toCharArray(), testEntry.getWord());
+        char[] expected = {'p', 'r', '_', '_', '_'};
+
+        assertEquals(Arrays.toString(expected), Arrays.toString(test2));
+    }
+
 
 }

@@ -15,4 +15,8 @@ public class PlayerGuess {
     public char[] getGuess() {
         return guess;
     }
+
+    public static void resetNumberOfGuesses(){
+        numberOfGuesses = 0;
+    }
 }

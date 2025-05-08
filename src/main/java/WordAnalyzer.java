@@ -14,13 +14,13 @@ public class WordAnalyzer {
         return letterIsGuessed;
     }
 
-    public static boolean isLetterInWord(char letterGuess, char[] playerGuess) {
+    public static boolean isLetterInWord(char letterGuess, char[] randomWord) {
 
         boolean letterIsInWord = false;
 
-        for (int i = 0; i < playerGuess.length; i++) {
+        for (int i = 0; i < randomWord.length; i++) {
 
-            if (playerGuess[i] == letterGuess) {
+            if (randomWord[i] == letterGuess) {
                 letterIsInWord = true;
             }
         }

@@ -1,6 +1,7 @@
 import com.sun.source.util.Plugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -102,7 +103,7 @@ public class Main {
             } else {
                 playerOfficialGuess = new PlayerGuess(input);
 
-           }
+            }
 
 
         } while (!validGuess);
@@ -117,37 +118,47 @@ public class Main {
         int numberOfLetters;
         boolean isGameContinuing = true;
         PlayerGuess playerChoice;
+        boolean wordIsFound = false;
+        String defintionRandomWord = "";
 
 
         while (isGameContinuing) {
             numberOfLetters = askNumberOfLetters();
-            GuessManager playerChoices = new GuessManager(numberOfLetters);
-
 
 
             if (isGameContinuing) {
-                // one day write how many guesses she could have with that choice
-                char[] pickRandomWord = randomWord(numberOfLetters).getWord();
+                GuessManager playerChoices = new GuessManager(numberOfLetters);
+                DictionaryEntry randomWord = randomWord(numberOfLetters);
+                char[] pickRandomWord = randomWord.getWord();
+                defintionRandomWord = randomWord.getDefiniton();
                 System.out.println("Your word has been chosen\n");
-                GuessTracker playerProgression = new GuessTracker(randomWord(numberOfLetters));
+                GuessTracker playerProgression = new GuessTracker(randomWord);
+                PlayerGuess.resetNumberOfGuesses();
 
-                while (PlayerGuess.getNumberOfGuesses() < numberOfLetters) {
+                while (PlayerGuess.getNumberOfGuesses() < numberOfLetters && !wordIsFound) {
                     playerChoice = askPlayerGuess(pickRandomWord);
 
                     playerChoices.addGuess(playerChoice);
 
                     System.out.println("You found those letters");
-                    System.out.println(playerProgression.keepTrackGoodGuesses(pickRandomWord,playerChoice.getGuess()));
+                    System.out.println(playerProgression.keepTrackGoodGuesses(pickRandomWord, playerChoice.getGuess()));
 
                     System.out.println("The word doesn't have those letters");
-                    System.out.println(playerProgression.keepTrackBadGuesses(pickRandomWord,playerChoice.getGuess()));
+                    System.out.println(playerProgression.keepTrackBadGuesses(pickRandomWord, playerChoice.getGuess()));
 
+                    wordIsFound = playerProgression.isTheWordFound(pickRandomWord, playerChoice.getGuess());
 
 
                 }
 
+                if (!wordIsFound) {
+                    System.out.printf("The word was %s\n", Arrays.toString(pickRandomWord));
+                }
+                System.out.printf("Definition : %s\n", defintionRandomWord);
+
 
                 isGameContinuing = !(askIsGameDone());
+                wordIsFound = false;
 
 
             }

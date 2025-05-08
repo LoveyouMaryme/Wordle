@@ -43,7 +43,7 @@ public class FetchWords {
 
                 currentWord = Arrays.toString(csvReader.readNext());
 
-                word = currentWord.substring(0, currentWord.indexOf(",")).replaceAll("\\[", "");
+                word = currentWord.substring(0, currentWord.indexOf(",")).replaceAll("\\[", "").toLowerCase();
                 definition = currentWord.substring(currentWord.indexOf(",") + 2).replaceAll("]", "");
                 ;
 
