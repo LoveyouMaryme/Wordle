@@ -18,9 +18,12 @@ public class GuessTracker {
     }
 
     public char[] keepTrackGoodGuesses(char[] randomWord, char[] playerGuess) {
-        Arrays.fill(goodGuessesTracker, '_');
 
         for (int i = 0; i < randomWord.length; i++) {
+            if (!(goodGuessesTracker[i] >= 'a' && goodGuessesTracker[i] <= 'z')) {
+                goodGuessesTracker[i] = '_';
+            }
+
             if (randomWord[i] == playerGuess[i]) {
                 goodGuessesTracker[i] = playerGuess[i];
             }
@@ -35,13 +38,12 @@ public class GuessTracker {
                 if (!badGuessesTracker.contains(playerGuess[i])) {
                     badGuessesTracker.add(playerGuess[i]);
                 }
-
             }
         }
         return badGuessesTracker;
     }
 
-    public boolean isTheWordFound (char[] randomWord, char[] playerGuess) {
+    public boolean isTheWordFound(char[] randomWord, char[] playerGuess) {
         boolean wordIsFound = true;
 
         for (int i = 0; i < randomWord.length && wordIsFound; i++) {
@@ -51,7 +53,7 @@ public class GuessTracker {
             }
         }
 
-        if(wordIsFound){
+        if (wordIsFound) {
             System.out.println("Congratz!");
         }
 

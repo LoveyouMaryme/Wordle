@@ -11,7 +11,7 @@ class PlayerGuessTest {
         char[] input2 = "guessDeux".toCharArray();
         char[] guess1 = new PlayerGuess(input1).getGuess();
         char[] guess2 = new PlayerGuess(input2).getGuess();
-        System.out.println(PlayerGuess.getNumberOfGuesses());
+        assertEquals(2, PlayerGuess.getNumberOfGuesses());
 
     }
 

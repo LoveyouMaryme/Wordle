@@ -15,7 +15,7 @@ class GuessTrackerTest {
             GuessTracker testGuessTracker  = new GuessTracker(testEntry);
 
             char[] test = testGuessTracker.keepTrackGoodGuesses("brave".toCharArray(), testEntry.getWord());
-            char[] expected = {0, 'r', 0, 0, 0};
+            char[] expected = {'_', 'r', '_', '_',  '_'};
 
             assertEquals(Arrays.toString(expected), Arrays.toString(test));
     }
@@ -78,6 +78,20 @@ class GuessTrackerTest {
         char[] test = testGuessTracker.keepTrackGoodGuesses("brave".toCharArray(), testEntry.getWord());
         char[] test2 = testGuessTracker.keepTrackGoodGuesses("prave".toCharArray(), testEntry.getWord());
         char[] expected = {'p', 'r', '_', '_', '_'};
+
+        assertEquals(Arrays.toString(expected), Arrays.toString(test2));
+    }
+
+    @Test
+    void keepGoodGuesses() {
+
+        DictionaryEntry testEntry = new DictionaryEntry("torsk", "The word \"torsk\" refers to a type of fish");
+
+        GuessTracker testGuessTracker  = new GuessTracker(testEntry);
+
+        char[] test = testGuessTracker.keepTrackGoodGuesses("sotrc".toCharArray(), testEntry.getWord());
+        char[] test2 = testGuessTracker.keepTrackGoodGuesses("sport".toCharArray(), testEntry.getWord());
+        char[] expected = {'_', 'o', '_', '_', '_'};
 
         assertEquals(Arrays.toString(expected), Arrays.toString(test2));
     }
